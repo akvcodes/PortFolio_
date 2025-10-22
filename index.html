@@ -1393,99 +1393,108 @@
             z-index: 0;
         }
 
-        .timeline {
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
             position: relative;
-            max-width: 800px;
-            margin: 0 auto;
+            z-index: 1;
+            justify-items: center;
         }
 
-        .timeline::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            width: 2px;
-            background: var(--gradient);
-            transform: translateX(-50%);
-        }
-
-        .timeline-item {
-            display: flex;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-
-        .timeline-item:nth-child(odd) {
-            flex-direction: row-reverse;
-        }
-
-        .timeline-content {
+        .education-card {
             background-color: var(--card-bg);
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            width: 45%;
-            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
+            position: relative;
             border: 1px solid rgba(141, 114, 225, 0.2);
             backdrop-filter: blur(var(--blur-amount));
             -webkit-backdrop-filter: blur(var(--blur-amount));
+            max-width: 400px;
+            width: 100%;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
         }
 
-        [data-theme="light"] .timeline-content {
-            box-shadow: 0 5px 15px rgba(108, 74, 182, 0.1);
+        [data-theme="light"] .education-card {
+            box-shadow: 0 10px 20px rgba(108, 74, 182, 0.15);
         }
 
-        .timeline-content:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(108, 74, 182, 0.2);
+        .education-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(108, 74, 182, 0.3);
         }
 
-        .timeline-item:nth-child(odd) .timeline-content {
-            margin-left: 5%;
+        .education-background {
+            height: 200px;
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+            position: relative;
         }
 
-        .timeline-item:nth-child(even) .timeline-content {
-            margin-right: 5%;
-        }
-
-        .timeline-content::after {
-            content: '';
+        .education-logo {
             position: absolute;
-            top: 20px;
-            width: 20px;
-            height: 20px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
             background-color: var(--card-bg);
-            transform: rotate(45deg);
-            border: 1px solid rgba(141, 114, 225, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border: 3px solid var(--accent);
         }
 
-        .timeline-item:nth-child(odd) .timeline-content::after {
-            left: -10px;
+        .education-logo img {
+            width: 80%;
+            height: 80%;
+            object-fit: contain;
         }
 
-        .timeline-item:nth-child(even) .timeline-content::after {
-            right: -10px;
+        .education-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
 
-        .timeline-date {
-            position: absolute;
-            top: 10px;
+        .education-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            text-align: center;
+        }
+
+        .education-content h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .education-content p {
+            margin-bottom: 1rem;
+            color: var(--text-color);
+            flex-grow: 1;
+        }
+
+        .education-date {
             background: var(--gradient);
             color: var(--white);
-            padding: 5px 15px;
+            padding: 8px 15px;
             border-radius: 20px;
             font-weight: 500;
             box-shadow: var(--neon-glow);
-        }
-
-        .timeline-item:nth-child(odd) .timeline-date {
-            right: -100px;
-        }
-
-        .timeline-item:nth-child(even) .timeline-date {
-            left: -100px;
+            text-align: center;
+            margin-top: auto;
         }
 
         /* Projects Section */
@@ -1961,27 +1970,8 @@
                 grid-template-columns: 1fr;
             }
             
-            .timeline::before {
-                left: 30px;
-            }
-            
-            .timeline-item {
-                flex-direction: row !important;
-            }
-            
-            .timeline-content {
-                width: calc(100% - 80px);
-                margin-left: 80px !important;
-            }
-            
-            .timeline-content::after {
-                left: -10px !important;
-                right: auto !important;
-            }
-            
-            .timeline-date {
-                left: 0 !important;
-                right: auto !important;
+            .education-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -2273,34 +2263,53 @@
     <section id="education" class="education glass card-enhanced">
         <div class="container">
             <div class="section-title">
-                <h2>Education & Experience</h2>
+                <h2>Education</h2>
             </div>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-content glass">
-                        <h3>Bachelor of Science in Information Technology</h3>
-                        <p>Davao del Sur State College</p>
-                        <p>Currently pursuing my degree with focus on web development and system analysis. Actively participating in various programming competitions and tech workshops.</p>
+            <div class="education-grid">
+                <!-- College -->
+                <div class="education-card glass card-enhanced">
+                    <div class="education-background" style="background-image: url('davao_del_sur_statecollage_school.jpg');">
+                        <div class="education-logo">
+                            <img src="davao_del_sur_statecollage_PhotoGrid.png" alt="Davao Del Sur State College Logo">
+                        </div>
                     </div>
-                    <div class="timeline-date">2022 - Present</div>
+                    <div class="education-content">
+                        <h3>College</h3>
+                        <h4>Davao Del Sur State College</h4>
+                        <p>Currently pursuing a Bachelor of Science in Information Technology (BSIT) with focus on web development and system analysis. Actively participating in various programming competitions and tech workshops.</p>
+                        <p><strong>Current Status:</strong> 3rd Year BSIT Student</p>
+                        <div class="education-date">2022 - Present</div>
+                    </div>
                 </div>
                 
-                <div class="timeline-item">
-                    <div class="timeline-content glass">
-                        <h3>TVL - ICT Track</h3>
-                        <p>Magsaysay Academy</p>
+                <!-- High School -->
+                <div class="education-card glass card-enhanced">
+                    <div class="education-background" style="background-image: url('manuel_a_roxas_school.jpg');">
+                        <div class="education-logo">
+                            <img src="manuel_a_roxas_PhotoGrid.png" alt="Manuel A. Roxas High School Logo">
+                        </div>
+                    </div>
+                    <div class="education-content">
+                        <h3>High School</h3>
+                        <h4>Manuel A. Roxas High School - Paco, Manila</h4>
                         <p>Completed Senior High School with Technical-Vocational-Livelihood track specializing in Information and Communication Technology. Gained foundational knowledge in computer systems, networking, and programming.</p>
+                        <div class="education-date">2018 - 2022</div>
                     </div>
-                    <div class="timeline-date">2020 - 2022</div>
                 </div>
                 
-                <div class="timeline-item">
-                    <div class="timeline-content glass">
-                        <h3>Freelance Web Developer</h3>
-                        <p>Self-Employed</p>
-                        <p>Developing responsive websites and web applications for local businesses. Collaborating with clients to understand requirements and deliver customized solutions.</p>
+                <!-- Elementary School -->
+                <div class="education-card glass card-enhanced">
+                    <div class="education-background" style="background-image: url('jacinto_zamora_school.png');">
+                        <div class="education-logo">
+                            <img src="jacinto_zamora-removebg-preview.png" alt="Jacinto Zamora Elementary School Logo">
+                        </div>
                     </div>
-                    <div class="timeline-date">2023 - Present</div>
+                    <div class="education-content">
+                        <h3>Elementary School</h3>
+                        <h4>Jacinto Zamora Elementary School</h4>
+                        <p>Completed elementary education with honors. Developed foundational skills in mathematics, science, and language arts. Participated in various extracurricular activities and competitions.</p>
+                        <div class="education-date">2012 - 2018</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -2362,6 +2371,41 @@
                             <span class="tech-tag">LocalStorage</span>
                         </div>
                         <button class="btn view-project" data-project="task-manager">View Project</button>
+                    </div>
+                </div>
+                
+                <!-- NEW: iPhone 17 Advertisement Poster -->
+                <div class="project-card glass card-enhanced">
+                    <div class="project-header">
+                        <h3>iPhone 17 Advertisement Poster</h3>
+                        <p>Graphic Design Project</p>
+                    </div>
+                    <div class="project-content">
+                        <p>Created a visually striking advertisement poster for the upcoming iPhone 17, showcasing innovative design concepts and marketing strategies.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Graphic Design</span>
+                            <span class="tech-tag">Adobe Photoshop</span>
+                            <span class="tech-tag">Marketing</span>
+                        </div>
+                        <button class="btn view-project" data-project="iphone-poster">View Project</button>
+                    </div>
+                </div>
+                
+                <!-- NEW: Wix Website -->
+                <div class="project-card glass card-enhanced">
+                    <div class="project-header">
+                        <h3>Personal Wix Website</h3>
+                        <p>Web Development & Design</p>
+                    </div>
+                    <div class="project-content">
+                        <p>Designed and developed a personal website using Wix platform, showcasing portfolio, skills, and professional information.</p>
+                        <div class="project-tech">
+                            <span class="tech-tag">Wix</span>
+                            <span class="tech-tag">Web Design</span>
+                            <span class="tech-tag">UI/UX</span>
+                            <span class="tech-tag">Responsive Design</span>
+                        </div>
+                        <a href="https://alessandrakatevall.wixsite.com/valle--3a" class="btn" target="_blank">Visit Website</a>
                     </div>
                 </div>
             </div>
@@ -3433,6 +3477,80 @@
                     </div>
                 `,
                 learnings: "I learned how to implement full CRUD functionality and use localStorage for data persistence in web applications."
+            },
+            "iphone-poster": {
+                title: "iPhone 17 Advertisement Poster",
+                description: "Created a visually striking advertisement poster for the upcoming iPhone 17, showcasing innovative design concepts and marketing strategies.",
+                objectives: [
+                    "Design a compelling advertisement poster",
+                    "Apply graphic design principles",
+                    "Create visual hierarchy and balance",
+                    "Communicate product features effectively"
+                ],
+                technologies: ["Adobe Photoshop", "Graphic Design", "Marketing"],
+                features: [
+                    "Modern and sleek design",
+                    "Clear product messaging",
+                    "Visual appeal and brand consistency",
+                    "Effective use of typography and color"
+                ],
+                demo: `
+                    <div class="activity-demo">
+                        <h3>iPhone 17 Advertisement Poster</h3>
+                        <p>This poster showcases the innovative features of the upcoming iPhone 17:</p>
+                        <div class="demo-container">
+                            <style>
+                                .poster-container {
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    padding: 20px;
+                                }
+                                .poster-preview {
+                                    width: 100%;
+                                    max-width: 500px;
+                                    border-radius: 15px;
+                                    overflow: hidden;
+                                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+                                }
+                                .poster-preview img {
+                                    width: 100%;
+                                    height: auto;
+                                    display: block;
+                                }
+                                .poster-description {
+                                    margin-top: 20px;
+                                    padding: 15px;
+                                    background-color: var(--card-bg);
+                                    border-radius: 10px;
+                                    border: 1px solid var(--glass-border);
+                                }
+                                .poster-description h4 {
+                                    margin-bottom: 10px;
+                                    color: var(--primary);
+                                }
+                            </style>
+                            <div class="poster-container">
+                                <div>
+                                    <div class="poster-preview">
+                                        <img src="Screenshot 2025-09-16 165015.png" alt="iPhone 17 Advertisement Poster">
+                                    </div>
+                                    <div class="poster-description">
+                                        <h4>About this Project</h4>
+                                        <p>This advertisement poster for the iPhone 17 was designed to showcase the device's key features including next-generation performance, advanced camera system, and all-day battery life. The design emphasizes a clean, modern aesthetic with bold typography and strategic use of white space to draw attention to the product.</p>
+                                        <p><strong>Key Features Highlighted:</strong></p>
+                                        <ul>
+                                            <li>Next gen performance for pro-level multi-tasking</li>
+                                            <li>Advanced camera system for stunning day & night shots</li>
+                                            <li>All-day battery life for work and play</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `,
+                learnings: "This project enhanced my graphic design skills and taught me how to create compelling visual marketing materials that effectively communicate product features and brand identity."
             }
         };
 
